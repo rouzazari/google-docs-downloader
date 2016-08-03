@@ -22,11 +22,14 @@ def get_google_download(url_public, save_file_name):
     # parse the response and get new download link with confirmation
     parsed_request = BeautifulSoup(request_public.text, 'html.parser')
     download_link = parsed_request.find('a', id="uc-download-link")
+
     if not download_link:
-        pass # TODO: error out
+        print("download failed - download link not found")
+        return
     download_url = download_link.get('href')
     if not download_url:
-        pass # TODO: error out
+        print("download failed - download url not found")
+        return
 
     # request the direct download url using cookies from first request
     # include stream=True to stream the download (for large files)
@@ -43,7 +46,8 @@ def get_google_download(url_public, save_file_name):
                 f.write(chunk)
                 size += CHUNK_SIZE
                 print("file written: {:>10}".format(convertSize(size/CHUNK_SIZE)), end="\r")
-    
+
+    print("download complete")
     request_public.close()
     request_download.close()
 
