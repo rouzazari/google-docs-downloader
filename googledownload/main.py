@@ -42,8 +42,8 @@ def get_google_download(url_public, save_file_name):
             if chunk:
                 f.write(chunk)
                 size += CHUNK_SIZE
-                print("file written: {}".format(convertSize(size)) ,end="\r")
-
+                print("file written: {:>10}".format(convertSize(size/CHUNK_SIZE)), end="\r")
+    
     request_public.close()
     request_download.close()
 
@@ -54,7 +54,7 @@ def convertSize(size):
     i = int(math.floor(math.log(size,1024)))
     p = math.pow(1024,i)
     s = round(size/p,2)
-    return '{size} {size_name}'.format(size=s, size_name=size_name[i])
+    return '{size:.1f} {size_name}'.format(size=s, size_name=size_name[i])
 
 HELP_USE_LINE = 'main.py -i <inputurl> -o <outputfile>' 
 
