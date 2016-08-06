@@ -1,8 +1,5 @@
 #!/usr/bin/env python3
 
-# TODO: change precision on downloader
-# TODO: ensure correct size
-
 import sys, getopt
 import math
 
@@ -89,7 +86,4 @@ def main(argv):
 
 if __name__ == "__main__":
     main(sys.argv[1:])
-    #url = "https://docs.google.com/uc?id=0B8S3kx1EXmCXUG42Zk1qdV9HajQ&export=download"
-    #file = "1.mov"
-    #get_google_download(url,file)
 
